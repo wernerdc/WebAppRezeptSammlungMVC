@@ -49,8 +49,8 @@ namespace WebAppRezeptSammlungMVC.Controllers
         // GET: Zutats/Create
         public IActionResult Create()
         {
-            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Id");
-            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Id");
+            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Bezeichnung");
+            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Bezeichnung");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace WebAppRezeptSammlungMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RezeptId,LebensmittelId,Menge,Einheit")] Zutat zutat)
+        public async Task<IActionResult> Create([Bind("RezeptId,LebensmittelId,Menge,Einheit")] Zutat zutat)    // why delete id?
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace WebAppRezeptSammlungMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Id", zutat.LebensmittelId);
-            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Id", zutat.RezeptId);
+            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Bezeichnung", zutat.LebensmittelId);
+            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Bezeichnung", zutat.RezeptId);
             return View(zutat);
         }
 
@@ -85,8 +85,8 @@ namespace WebAppRezeptSammlungMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Id", zutat.LebensmittelId);
-            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Id", zutat.RezeptId);
+            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Bezeichnung", zutat.LebensmittelId);
+            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Bezeichnung", zutat.RezeptId);
             return View(zutat);
         }
 
@@ -122,8 +122,8 @@ namespace WebAppRezeptSammlungMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Id", zutat.LebensmittelId);
-            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Id", zutat.RezeptId);
+            ViewData["LebensmittelId"] = new SelectList(_context.Lebensmittel, "Id", "Bezeichnung", zutat.LebensmittelId);
+            ViewData["RezeptId"] = new SelectList(_context.Rezept, "Id", "Bezeichnung", zutat.RezeptId);
             return View(zutat);
         }
 

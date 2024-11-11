@@ -33,7 +33,7 @@ namespace WebAppRezeptSammlungMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Rezepts}/{action=MyAction}/{id?}");
 
             app.Run();
         }

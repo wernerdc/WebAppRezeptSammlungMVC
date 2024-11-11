@@ -34,6 +34,9 @@ namespace WebAppRezeptSammlungMVC.Controllers
             }
 
             var rezept = await _context.Rezept
+                .Include(r => r.Zutaten)                // erweiterung für Zutaten
+                .ThenInclude(p => p.Lebensmittel)       // erweiterung für Zutaten
+                .AsNoTracking()                         // erweiterung für Zutaten
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (rezept == null)
             {
@@ -152,6 +155,11 @@ namespace WebAppRezeptSammlungMVC.Controllers
         private bool RezeptExists(int id)
         {
             return _context.Rezept.Any(e => e.Id == id);
+        }
+
+        public IActionResult MyAction() 
+        { 
+            return View(); 
         }
     }
 }

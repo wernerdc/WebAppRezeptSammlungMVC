@@ -9,7 +9,7 @@
         public string? Einheit { get; set; }
 
         // Navigation-Properties
-        public Rezept Rezept { get; set; }
-        public Lebensmittel Lebensmittel { get; set; }
+        public Rezept? Rezept { get; set; }             // nullable, else it does not work
+        public Lebensmittel? Lebensmittel { get; set; } // ^^
     }
 }

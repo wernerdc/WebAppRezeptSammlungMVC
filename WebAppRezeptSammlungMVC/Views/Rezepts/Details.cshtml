@@ -1,42 +1,72 @@
 ﻿@model WebAppRezeptSammlungMVC.Models.Rezept
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>Rezept</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Beschreibung)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Beschreibung)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Bezeichnung)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Bezeichnung)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Zubereitung)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Zubereitung)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Zubereitungszeit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Zubereitungszeit)
-        </dd>
-    </dl>
+	<h4>Rezept</h4>
+	<hr />
+	<dl class="row">
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Bezeichnung)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.Bezeichnung)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Beschreibung)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.Beschreibung)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Zubereitung)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.Zubereitung)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Zubereitungszeit)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.Zubereitungszeit)
+		</dd>
+	</dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+	<br /> <br />
+	<h4>Zutaten</h4>
+	<hr />
+	<dl class="row">
+		<dd class="col-sm-10">
+			<table class="table">
+				<tr>
+					<th>Lebensmittel</th>
+					<th>Menge</th>
+					<th>Einheit</th>
+				</tr>
+				@foreach (var item in Model.Zutaten)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Lebensmittel.Bezeichnung)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Menge)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Einheit)
+						</td>
+					</tr>
+				}
+			</table>
+		</dd>
+	</dl>
+</div>
+<div>
+	<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
 </div>
