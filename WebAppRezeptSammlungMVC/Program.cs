@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using WebAppRezeptSammlungMVC.Data;
 namespace WebAppRezeptSammlungMVC
 {
     public class Program
@@ -5,6 +8,8 @@ namespace WebAppRezeptSammlungMVC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<WebAppRezeptSammlungMVCContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("WebAppRezeptSammlungMVCContext") ?? throw new InvalidOperationException("Connection string 'WebAppRezeptSammlungMVCContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

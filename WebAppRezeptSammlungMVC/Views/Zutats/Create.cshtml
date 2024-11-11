@@ -1,0 +1,46 @@
+﻿@model WebAppRezeptSammlungMVC.Models.Zutat
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Zutat</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RezeptId" class="control-label"></label>
+                <select asp-for="RezeptId" class ="form-control" asp-items="ViewBag.RezeptId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LebensmittelId" class="control-label"></label>
+                <select asp-for="LebensmittelId" class ="form-control" asp-items="ViewBag.LebensmittelId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Menge" class="control-label"></label>
+                <input asp-for="Menge" class="form-control" />
+                <span asp-validation-for="Menge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Einheit" class="control-label"></label>
+                <input asp-for="Einheit" class="form-control" />
+                <span asp-validation-for="Einheit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
