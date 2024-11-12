@@ -80,7 +80,11 @@ namespace WebAppRezeptSammlungMVC.Controllers
                 return NotFound();
             }
 
-            var zutat = await _context.Zutat.FindAsync(id);
+            var zutat = await _context.Zutat
+                .Include(z => z.Lebensmittel)
+                .Include(z => z.Rezept)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            //var zutat = await _context.Zutat.FindAsync(id);
             if (zutat == null)
             {
                 return NotFound();
